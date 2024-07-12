@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@assets/*": ["assets/*"],
+      "@assets": ["assets/index.ts"],
+      "@components/*": ["components/*"],
+      "@common/*": ["pages/Common/*"],
+      "@api/*": ["api/*"],
+      "@hooks/*": ["hooks/*"],
+      "@hooks": ["hooks/index.ts"],
+      "@redux/*": ["redux/*"],
+      "@constants/*": ["constants/*"],
+      "@tools/*": ["tools/*"],
+      "@tools": ["tools/index.ts"],
+      "@root/*": ["./*"]
+    }
+  }
+}

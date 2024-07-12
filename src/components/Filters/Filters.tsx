@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Filters.module.scss";
 
 const Filters = () => {
-  console.log(classes);
+  console.log(classes + "");
 
   return (
     <aside>
