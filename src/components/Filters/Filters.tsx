@@ -6,7 +6,7 @@ const Filters = () => {
 
   return (
     <aside>
-      <h3>Кількість пересадок</h3>
+      <h3 className={classes.header}>Кількість пересадок</h3>
     </aside>
   );
 };
