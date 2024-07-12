@@ -17,7 +17,21 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        include: path.resolve(__dirname, "src"),
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                mode: "local",
+                localIdentName: "[local]__[hash]",
+                localIdentHashDigestLength: 5,
+              },
+            },
+          },
+          "sass-loader",
+        ],
       },
       {
         test: /\.(js|ts)x?$/,

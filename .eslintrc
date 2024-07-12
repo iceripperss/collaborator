@@ -3,7 +3,6 @@
     "airbnb",
     "airbnb/hooks",
     "plugin:react/recommended",
-    "airbnb",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
