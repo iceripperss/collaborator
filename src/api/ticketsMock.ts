@@ -1,6 +1,6 @@
-import TicketT from "./ticket_type";
+import TicketT from "./ticketType";
 
-const tickets_mock: TicketT[] = [
+const ticketsMock: TicketT[] = [
   {
     price: 13300,
     details: [
@@ -98,4 +98,4 @@ const tickets_mock: TicketT[] = [
   },
 ];
 
-export default tickets_mock;
+export default ticketsMock;

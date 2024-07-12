@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import TicketT from "../api/ticket_type";
-import tickets_mock from "../api/tickets_mock";
+import TicketT from "@api/ticketType";
+import ticketsMock from "@api/ticketsMock";
 
 export interface TicketState {
   data: TicketT[];
 }
 
-const initialState: TicketState = { data: tickets_mock };
+const initialState: TicketState = { data: ticketsMock };
 
 export const ticketsSlice = createSlice({
   name: "tickets",
@@ -27,7 +27,7 @@ export const ticketsSlice = createSlice({
       });
     },
     reset: (state) => {
-      state.data = tickets_mock;
+      state.data = ticketsMock;
     },
   },
 });
