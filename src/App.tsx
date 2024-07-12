@@ -1,18 +1,17 @@
 import React from 'react';
-import Logo from "./logo";
 import "./style.css";
+import Header from "./components/Header";
+import List from "./components/List";
+import Filters from "./components/Filters";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Logo />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </header>
-    </div>
-  );
+const App = () => {
+    return (
+        <>
+            <Header/>
+            <Filters/>
+            <List/>
+        </>
+    );
 }
 
 export default App;
