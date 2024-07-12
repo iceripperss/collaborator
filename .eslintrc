@@ -1,0 +1,131 @@
+{
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "import/no-unresolved": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/require-default-props": "off",
+    "react/prop-types": 0,
+    "react/function-component-definition": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-tag-spacing": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "react/jsx-props-no-spreading": "off",
+    "require-default-props": "off",
+    "no-unsafe-optional-chaining": "off",
+    "no-nonoctal-decimal-escape": "off",
+    "no-use-before-define": "off",
+    "no-void": "off",
+    "no-debugger": "warn",
+    "no-shadow": "off",
+    "linebreak-style": "off",
+    "object-curly-newline": "off",
+    "camelcase": "off",
+    "semi": 2,
+    "quotes": [
+      2,
+      "double"
+    ],
+    "import/order": [
+      "error",
+      {
+        "pathGroups": [
+          {
+            "pattern": "@**",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "builtin"
+        ]
+      }
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".ts",
+          ".tsx"
+        ]
+      }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": [
+          "if",
+          "for",
+          "while",
+          "switch",
+          "return"
+        ]
+      },
+      {
+        "blankLine": "always",
+        "prev": [
+          "if",
+          "for",
+          "while",
+          "switch",
+          "return"
+        ],
+        "next": "*"
+      },
+      {
+        "blankLine": "never",
+        "prev": [
+          "if",
+          "for",
+          "while",
+          "switch",
+          "return",
+          "import"
+        ],
+        "next": [
+          "break",
+          "import"
+        ]
+      }
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 130,
+        "ignoreComments": true,
+        "ignoreStrings": true
+      }
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "never",
+      {
+        "webp": "always",
+        "jpg": "always",
+        "mp4": "always"
+      }
+    ]
+  }
+}

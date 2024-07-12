@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
-const Filters = () => {
-    return (
-        <aside>
-            Filters
-        </aside>
-    );
-};
+function Filters() {
+  return <aside>Filters</aside>;
+}
 
 export default Filters;
