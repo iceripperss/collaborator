@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
-import { sortByDuration, sortByOptimal, sortByPrice } from "@redux/ticketReducer";
+import {resetMore, sortByDuration, sortByOptimal, sortByPrice} from "@redux/ticketReducer";
 import clsx from "clsx";
 import classes from "@components/ListGroup/ListGroup.module.scss";
 
@@ -12,6 +12,7 @@ const Sort = () => {
     (id: number, callback: () => void) => () => {
       setActive(id);
       callback();
+      dispatch(resetMore());
     },
     [],
   );

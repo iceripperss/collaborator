@@ -5,36 +5,40 @@ import getMinutesFromDuration from "@root/helpers/getMinutesFromDuration";
 
 export interface TicketState {
   data: TicketT[];
+  filteredData: TicketT[];
+  more: number;
 }
 
-const initialState: TicketState = { data: ticketsMock };
+const initialState: TicketState = { data: ticketsMock, filteredData: ticketsMock, more: 1 };
 
 export const ticketsSlice = createSlice({
   name: "tickets",
   initialState,
   reducers: {
-    filterByStops: (state, { payload }: PayloadAction<number[]>) => {
-      if (payload.length === 0) {
-        state.data = ticketsMock;
+    filterByStops: (state, { payload }: PayloadAction<Array<number>>) => {
+      if (!payload.length) {
+        state.filteredData = state.data;
 
         return;
       }
 
-      state.data = state.data.filter((ticket) => {
-        if (Array.isArray(ticket.details[0].stops_locations)) {
-          const stops = ticket.details[0].stops_locations?.length;
+      state.filteredData = state.data.filter((ticket) => {
+        const ticketStops = ticket.details[0].stops_locations;
 
-          return payload.includes(stops);
+        if (Array.isArray(ticketStops)) {
+          const stopsLength = ticket.details[0].stops_locations?.length;
+
+          return payload.includes(stopsLength);
         }
 
-        if (!ticket.details[0].stops_locations) return payload.includes(0);
+        return payload.includes(0);
       });
     },
     sortByPrice: (state) => {
-      state.data = state.data.sort((a, b) => a.price - b.price);
+      state.filteredData = state.filteredData.sort((a, b) => a.price - b.price);
     },
     sortByDuration: (state) => {
-      state.data = state.data.sort((a, b) => {
+      state.filteredData = state.filteredData.sort((a, b) => {
         const aMin = getMinutesFromDuration(a.details[0].duration) + getMinutesFromDuration(a.details[1].duration);
         const bMin = getMinutesFromDuration(b.details[0].duration) + getMinutesFromDuration(b.details[1].duration);
 
@@ -42,16 +46,22 @@ export const ticketsSlice = createSlice({
       });
     },
     sortByOptimal: (state) => {
-      state.data = state.data.sort((a, b) => {
+      state.filteredData = state.filteredData.sort((a, b) => {
         const aMin = getMinutesFromDuration(a.details[0].duration) + getMinutesFromDuration(a.details[1].duration);
         const bMin = getMinutesFromDuration(b.details[0].duration) + getMinutesFromDuration(b.details[1].duration);
 
         return aMin / a.price - bMin / b.price;
       });
     },
+    incrementMore: (state) => {
+      state.more += 1;
+    },
+    resetMore: (state) => {
+      state.more = 1;
+    },
   },
 });
 
-export const { sortByDuration, filterByStops, sortByPrice, sortByOptimal } = ticketsSlice.actions;
+export const { incrementMore, resetMore, sortByDuration, filterByStops, sortByPrice, sortByOptimal } = ticketsSlice.actions;
 
 export default ticketsSlice.reducer;

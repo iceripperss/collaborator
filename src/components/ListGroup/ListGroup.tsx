@@ -1,18 +1,20 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@redux/store";
 import TicketT from "@api/ticketType";
 import Ticket from "@components/ListGroup/Ticket";
 import Sort from "@components/ListGroup/Sort";
 import Filters from "@components/ListGroup/Filters/Filters";
 import clsx from "clsx";
+import { increaseMore, incrementMore } from "@redux/ticketReducer";
 import classes from "./ListGroup.module.scss";
 
 const List = () => {
-  const [more, setMore] = React.useState<number>(1);
-  const handleMore = () => setMore((prev) => prev + 1);
-  const tickets: TicketT[] = useSelector((state: RootState) => state.tickets.data);
-  const isMore = tickets.length >= more * 5;
+  const more = useSelector((state: RootState) => state.tickets.more);
+  const dispatch = useDispatch();
+  const handleMore = () => dispatch(incrementMore());
+  const tickets: TicketT[] = useSelector((state: RootState) => state.tickets.filteredData);
+  const isMore = tickets.length > more * 5;
 
   return (
     <article className={classes.list}>
