@@ -6,7 +6,7 @@ import Ticket from "@components/ListGroup/Ticket";
 import Sort from "@components/ListGroup/Sort";
 import Filters from "@components/ListGroup/Filters/Filters";
 import clsx from "clsx";
-import { increaseMore, incrementMore } from "@redux/ticketReducer";
+import { incrementMore } from "@redux/ticketReducer";
 import classes from "./ListGroup.module.scss";
 
 const List = () => {
