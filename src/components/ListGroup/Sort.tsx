@@ -7,9 +7,6 @@ import classes from "@components/ListGroup/ListGroup.module.scss";
 const Sort = () => {
   const [active, setActive] = React.useState<number>(0);
   const dispatch = useDispatch();
-  const handleLowestPriceSort = () => dispatch(sortByPrice());
-  const handleFastestSort = () => dispatch(sortByDuration());
-  const handleOptimalSort = () => dispatch(sortByOptimal());
 
   const setActiveButton = useCallback(
     (id: number, callback: () => void) => () => {
@@ -19,8 +16,12 @@ const Sort = () => {
     [],
   );
 
-  const buttonsMap = useMemo(
-    () => [
+  const buttonsMap = useMemo(() => {
+    const handleLowestPriceSort = () => dispatch(sortByPrice());
+    const handleFastestSort = () => dispatch(sortByDuration());
+    const handleOptimalSort = () => dispatch(sortByOptimal());
+
+    return [
       {
         title: "Найдешевший",
         onClick: handleLowestPriceSort,
@@ -36,9 +37,8 @@ const Sort = () => {
         onClick: handleOptimalSort,
         id: 3,
       },
-    ],
-    [],
-  );
+    ];
+  }, []);
 
   return (
     <div className={classes.sort}>

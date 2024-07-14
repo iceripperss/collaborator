@@ -14,7 +14,7 @@
   max-width: 500px;
 
   &__button {
-    background: rgba(33, 150, 243, 1);
+    background: rgb(33 150 243 / 100%);
     color: $white-color;
     padding: 15px 20px;
     border: none;
@@ -27,7 +27,7 @@
     }
 
     &--disabled {
-      background: rgba(33, 150, 243, 0.5);
+      background: rgb(33 150 243 / 50%);
 
       &:hover {
         cursor: auto;
@@ -46,7 +46,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: rgba(33, 150, 243, 1);
+    color: rgb(33 150 243 / 100%);
     font-size: 24px;
     margin-bottom: 15px;
 
@@ -98,7 +98,7 @@
     color: $grey-color;
     line-height: 20px;
     padding: 15px 20px;
-    border: 1px solid rgba(223, 229, 236, 1);
+    border: 1px solid rgb(223 229 236 / 100%);
     text-transform: uppercase;
 
     &:first-child {
@@ -124,7 +124,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .main {
     flex-direction: column;
     gap: 20px;
@@ -140,17 +140,17 @@
     flex-direction: column;
 
     &__button {
-      border: 1px solid rgba(223, 229, 236, 1);
+      border: 1px solid rgb(223 229 236 / 100%);
 
       &:first-child {
         border-radius: $border-radius $border-radius 0 0;
-        border-right: 1px solid rgba(223, 229, 236, 1);
+        border-right: 1px solid rgb(223 229 236 / 100%);
         border-bottom: none;
       }
 
       &:last-child {
         border-radius: 0 0 $border-radius $border-radius;
-        border-left: 1px solid rgba(223, 229, 236, 1);
+        border-left: 1px solid rgb(223 229 236 / 100%);
         border-top: none;
       }
     }

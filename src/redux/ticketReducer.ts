@@ -52,7 +52,6 @@ export const ticketsSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { sortByDuration, filterByStops, sortByPrice, sortByOptimal } = ticketsSlice.actions;
 
 export default ticketsSlice.reducer;

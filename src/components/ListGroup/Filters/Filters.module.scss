@@ -5,7 +5,7 @@
   top: 30px;
   height: min-content;
   width: 250px;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 10%);
   padding: 20px 0;
   background: $white-color;
   border-radius: $border-radius;
@@ -14,8 +14,8 @@
     text-transform: uppercase;
     font-size: 13px;
     margin: 0;
-    padding: 0 20px 10px 20px;
-    color: rgba(33, 28, 28, 1);
+    padding: 0 20px 10px;
+    color: rgb(33 28 28 / 100%);
   }
 
   &__filters {
@@ -31,7 +31,7 @@
       color: $grey-color;
 
       &:hover {
-        background: rgba(241, 252, 255, 1);
+        background: rgb(241 252 255 / 100%);
         cursor: pointer;
       }
 
@@ -44,7 +44,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .aside {
     width: 100%;
     position: unset;
