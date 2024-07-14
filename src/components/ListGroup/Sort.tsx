@@ -24,14 +24,17 @@ const Sort = () => {
       {
         title: "Найдешевший",
         onClick: handleLowestPriceSort,
+        id: 1,
       },
       {
         title: "Найшвидший",
         onClick: handleFastestSort,
+        id: 2,
       },
       {
         title: "Оптимальний",
         onClick: handleOptimalSort,
+        id: 3,
       },
     ],
     [],
@@ -39,12 +42,12 @@ const Sort = () => {
 
   return (
     <div className={classes.sort}>
-      {buttonsMap.map(({ title, onClick }, index) => (
+      {buttonsMap.map(({ title, onClick, id }) => (
         <button
           key={title}
           type="button"
-          onClick={setActiveButton(index, onClick)}
-          className={clsx(classes.sort__button, active === index && classes["sort__button--active"])}
+          onClick={setActiveButton(id, onClick)}
+          className={clsx(classes.sort__button, active === id && classes["sort__button--active"])}
         >
           {title}
         </button>

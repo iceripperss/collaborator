@@ -4,13 +4,17 @@
   position: sticky;
   top: 30px;
   height: min-content;
-  max-width: 250px;
+  width: 250px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
   padding: 20px 0;
   background: $white-color;
   border-radius: $border-radius;
 
   &__header {
-    padding: 0 20px;
+    text-transform: uppercase;
+    font-size: 13px;
+    margin: 0;
+    padding: 0 20px 10px 20px;
     color: rgba(33, 28, 28, 1);
   }
 
@@ -22,6 +26,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      font-size: 13px;
       padding: 10px 20px;
       color: $grey-color;
 
@@ -36,5 +41,12 @@
          }
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .aside {
+    width: 100%;
+    position: unset;
   }
 }

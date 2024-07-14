@@ -16,37 +16,42 @@ const Filters = () => {
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
-
-    if (e.target.checked) {
-      setFilters([...filters, value]);
-    } else {
-      setFilters(filters.filter((filter) => filter !== value));
-    }
+    const allFilter = document.getElementById("allFilter") as HTMLInputElement;
+    allFilter.checked = false;
+    setFilters(e.target.checked ? [...filters, value] : filters.filter((filter) => filter !== value));
   };
 
-  const handleAllFilters = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      setFilters(flights.map(({ value }) => value));
-    } else {
-      setFilters([]);
-    }
-  };
+  const handleAllFilters = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFilters(e.target.checked ? flights.map(({ value }) => value) : []);
 
-  // useEffect(() => {
-  //   dispatch(filterByStops(filters));
-  // }, [filters]);
+  useEffect(() => {
+    dispatch(filterByStops(filters));
+  }, [filters]);
 
   return (
     <aside className={classes.aside}>
       <h3 className={classes.aside__header}>Кількість пересадок</h3>
       <div className={classes.aside__filters}>
         <label className={classes.aside__filters__filter}>
-          <input name="all" className={classes.aside__filters__filter__input} type="checkbox" onChange={handleAllFilters} />
+          <input
+            id="allFilter"
+            name="all"
+            className={classes.aside__filters__filter__input}
+            type="checkbox"
+            onChange={handleAllFilters}
+          />
           Всі
         </label>
         {flights.map(({ value, label }) => (
           <label className={classes.aside__filters__filter} key={label}>
-            <input name={label} className={classes.aside__filters__filter__input} type="checkbox" value={value} onChange={handleFilterChange} />
+            <input
+              name={label}
+              checked={filters.includes(value)}
+              className={classes.aside__filters__filter__input}
+              type="checkbox"
+              value={value}
+              onChange={handleFilterChange}
+            />
             {label}
           </label>
         ))}

@@ -363,21 +363,21 @@ const ticketsMock: TicketT[] = [
     ],
   },
   {
-    price: 52500,
+    price: 32500,
     details: [
       {
         route: "LHR - DXB",
         time_from: "18:00",
-        time_to: "15:00",
-        duration: "26:00",
-        stops_locations: ["CPT"],
+        time_to: "24:00",
+        duration: "06:00",
+        stops_locations: null,
       },
       {
         route: "DXB - LHR",
         time_from: "18:30",
         time_to: "08:00",
-        duration: "24:30",
-        stops_locations: ["CPT"],
+        duration: "13:30",
+        stops_locations: null,
       },
     ],
   },
