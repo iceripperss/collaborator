@@ -25,8 +25,10 @@ module.exports = {
             loader: "css-loader",
             options: {
               modules: {
+                namedExport: false,
+                exportLocalsConvention: "as-is",
                 mode: "local",
-                localIdentName: "[local]__[hash]",
+                localIdentName: "[local][hash]",
                 localIdentHashDigestLength: 5,
               },
             },
@@ -44,6 +46,11 @@ module.exports = {
         test: /\.svg$/i,
         issuer: /\.(js|ts)x?$/,
         use: ['@svgr/webpack'],
+      },
+      {
+        test: /\.(png|jpe?g|gif|webp)$/i,
+        include: path.resolve(__dirname, "src"),
+        type: "asset/resource"
       },
     ],
   },

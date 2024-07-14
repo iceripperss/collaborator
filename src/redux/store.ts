@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
+import logger from "@redux/logger";
 import ticketsReducer from "./ticketReducer";
 
 export const store = configureStore({
   reducer: {
     tickets: ticketsReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
