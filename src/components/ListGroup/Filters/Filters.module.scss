@@ -1,0 +1,40 @@
+@import "../../../styles/variables";
+
+.aside {
+  position: sticky;
+  top: 30px;
+  height: min-content;
+  max-width: 250px;
+  padding: 20px 0;
+  background: $white-color;
+  border-radius: $border-radius;
+
+  &__header {
+    padding: 0 20px;
+    color: rgba(33, 28, 28, 1);
+  }
+
+  &__filters {
+    display: flex;
+    flex-direction: column;
+
+    &__filter {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      color: $grey-color;
+
+      &:hover {
+        background: rgba(241, 252, 255, 1);
+        cursor: pointer;
+      }
+
+      &__input {
+         &:hover {
+           cursor: pointer;
+         }
+      }
+    }
+  }
+}

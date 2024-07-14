@@ -1,15 +1,13 @@
 import React from "react";
 import "./styles/style.scss";
 import Header from "@components/Header/Header";
-import List from "@components/ListGroup/List";
-import Filters from "./components/Filters/Filters";
+import ListGroup from "@components/ListGroup/ListGroup";
 
 const App = () => {
   return (
     <>
       <Header />
-      <Filters />
-      <List />
+      <ListGroup />
     </>
   );
 };
