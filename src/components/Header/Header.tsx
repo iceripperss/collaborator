@@ -8,7 +8,7 @@ export const Header = () => {
   return (
     <header>
       <nav className={classes.navigation}>
-        <a href={HomeLink}>
+        <a aria-label="homeLink" href={HomeLink}>
           <Logo />
         </a>
       </nav>

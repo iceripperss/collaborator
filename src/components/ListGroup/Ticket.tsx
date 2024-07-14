@@ -4,7 +4,11 @@ import airlineCo from "./airlineCo.png";
 import classes from "./ListGroup.module.scss";
 
 export const Ticket = ({ ticket: { details, price } }: { ticket: TicketT }) => {
-  const priceWithCurrency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(price);
+  const priceWithCurrency = new Intl.NumberFormat("ru-RU", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(price);
 
   return (
     <div className={classes.ticket}>

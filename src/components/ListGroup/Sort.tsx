@@ -1,46 +1,54 @@
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { setMore, sortByDuration, sortByOptimal, sortByPrice } from "@redux/ticket/ticketReducer";
+import { ticketsActions } from "@redux/ticket/reducer";
 import clsx from "clsx";
-import { UnknownAction } from "redux";
+import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 import classes from "./ListGroup.module.scss";
+
+enum SortType {
+  Price,
+  Duration,
+  Optimal,
+}
 
 const buttonsMap = [
   {
     title: "Найдешевший",
-    onClick: sortByPrice,
+    onClick: ticketsActions.sortByPrice,
+    value: SortType.Price,
   },
   {
     title: "Найшвидший",
-    onClick: sortByDuration,
+    onClick: ticketsActions.sortByDuration,
+    value: SortType.Duration,
   },
   {
     title: "Оптимальний",
-    onClick: sortByOptimal,
+    onClick: ticketsActions.sortByOptimal,
+    value: SortType.Optimal,
   },
 ];
 
 export const Sort = () => {
-  const [active, setActive] = React.useState(0);
+  const [active, setActive] = React.useState(SortType.Price);
   const dispatch = useDispatch();
 
   const setActiveButton = useCallback(
-    (id: number, callback: () => void) => () => {
-      setActive(id);
-      dispatch(callback() as UnknownAction);
-      dispatch(setMore(1));
+    (value: SortType, callback: ActionCreatorWithoutPayload) => () => {
+      setActive(value);
+      dispatch(callback());
     },
     [dispatch],
   );
 
   return (
     <div className={classes.sort}>
-      {buttonsMap.map(({ title, onClick }, index) => (
+      {buttonsMap.map(({ title, onClick, value }) => (
         <button
           key={title}
           type="button"
-          onClick={setActiveButton(index, onClick)}
-          className={clsx(classes.sort__button, active === index && classes.sort__button_active)}
+          onClick={setActiveButton(value, onClick)}
+          className={clsx(classes.sort__button, active === value && classes.sort__button_active)}
         >
           {title}
         </button>

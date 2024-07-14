@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { filterByTransfers } from "@redux/ticket/ticketReducer";
+import { ticketsActions } from "@redux/ticket/reducer";
 import classes from "./Filters.module.scss";
 
 const flights = [
@@ -25,8 +25,8 @@ export const Filters = () => {
     setFilters(e.target.checked ? flights.map(({ value }) => value) : []);
 
   useEffect(() => {
-    dispatch(filterByTransfers(filters));
-  }, [filters]);
+    dispatch(ticketsActions.filterByTransfers(filters));
+  }, [dispatch, filters]);
 
   return (
     <aside className={classes.aside}>

@@ -6,7 +6,9 @@
     "start": "webpack serve --open",
     "build": "webpack --mode production",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "tscheck": "tsc"
+    "tscheck": "tsc",
+    "stylelint": "stylelint src/**/*.scss",
+    "linters": "npm run lint && npm run tscheck && npm run stylelint"
   },
   "browserslist": {
     "production": [

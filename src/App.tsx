@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./styles/style.scss";
 import { useDispatch } from "react-redux";
-import { setTickets } from "@redux/ticket/ticketReducer";
+import { ticketsActions } from "@redux/ticket/reducer";
 import data from "@api/ticketsResponse.json";
 import { Header } from "@components/Header/Header";
 import { ListGroup } from "@components/ListGroup/ListGroup";
@@ -12,7 +12,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData().then((data) => dispatch(setTickets(data)));
+    fetchData().then((data) => dispatch(ticketsActions.setTickets(data)));
   }, [dispatch]);
 
   return (
