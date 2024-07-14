@@ -45,12 +45,12 @@ module.exports = {
       {
         test: /\.svg$/i,
         issuer: /\.(js|ts)x?$/,
-        use: ['@svgr/webpack'],
+        use: ["@svgr/webpack"],
       },
       {
         test: /\.(png|jpe?g|gif|webp)$/i,
         include: path.resolve(__dirname, "src"),
-        type: "asset/resource"
+        type: "asset/resource",
       },
     ],
   },

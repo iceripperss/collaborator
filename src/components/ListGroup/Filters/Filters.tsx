@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { filterByStops } from "@redux/ticketReducer";
+import { filterByTransfers } from "@redux/ticket/ticketReducer";
 import classes from "./Filters.module.scss";
 
 const flights = [
@@ -10,7 +10,7 @@ const flights = [
   { label: "3 Пересадки", value: 3 },
 ];
 
-const Filters = () => {
+export const Filters = () => {
   const [filters, setFilters] = React.useState<number[]>([]);
   const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ const Filters = () => {
     setFilters(e.target.checked ? flights.map(({ value }) => value) : []);
 
   useEffect(() => {
-    dispatch(filterByStops(filters));
+    dispatch(filterByTransfers(filters));
   }, [filters]);
 
   return (
@@ -59,5 +59,3 @@ const Filters = () => {
     </aside>
   );
 };
-
-export default Filters;

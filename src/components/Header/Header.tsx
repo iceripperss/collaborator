@@ -4,7 +4,7 @@ import classes from "./Header.module.scss";
 
 const HomeLink = "/";
 
-const Header = () => {
+export const Header = () => {
   return (
     <header>
       <nav className={classes.navigation}>
@@ -15,5 +15,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;

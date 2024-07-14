@@ -1,12 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import logger from "@redux/logger";
-import ticketsReducer from "./ticketReducer";
+import ticketsReducer from "./ticket/ticketReducer";
 
 export const store = configureStore({
   reducer: {
     tickets: ticketsReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

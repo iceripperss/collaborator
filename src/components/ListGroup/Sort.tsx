@@ -1,54 +1,46 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import {resetMore, sortByDuration, sortByOptimal, sortByPrice} from "@redux/ticketReducer";
+import { setMore, sortByDuration, sortByOptimal, sortByPrice } from "@redux/ticket/ticketReducer";
 import clsx from "clsx";
-import classes from "@components/ListGroup/ListGroup.module.scss";
+import { UnknownAction } from "redux";
+import classes from "./ListGroup.module.scss";
 
-const Sort = () => {
-  const [active, setActive] = React.useState<number>(0);
+const buttonsMap = [
+  {
+    title: "Найдешевший",
+    onClick: sortByPrice,
+  },
+  {
+    title: "Найшвидший",
+    onClick: sortByDuration,
+  },
+  {
+    title: "Оптимальний",
+    onClick: sortByOptimal,
+  },
+];
+
+export const Sort = () => {
+  const [active, setActive] = React.useState(0);
   const dispatch = useDispatch();
 
   const setActiveButton = useCallback(
     (id: number, callback: () => void) => () => {
       setActive(id);
-      callback();
-      dispatch(resetMore());
+      dispatch(callback() as UnknownAction);
+      dispatch(setMore(1));
     },
-    [],
+    [dispatch],
   );
-
-  const buttonsMap = useMemo(() => {
-    const handleLowestPriceSort = () => dispatch(sortByPrice());
-    const handleFastestSort = () => dispatch(sortByDuration());
-    const handleOptimalSort = () => dispatch(sortByOptimal());
-
-    return [
-      {
-        title: "Найдешевший",
-        onClick: handleLowestPriceSort,
-        id: 1,
-      },
-      {
-        title: "Найшвидший",
-        onClick: handleFastestSort,
-        id: 2,
-      },
-      {
-        title: "Оптимальний",
-        onClick: handleOptimalSort,
-        id: 3,
-      },
-    ];
-  }, []);
 
   return (
     <div className={classes.sort}>
-      {buttonsMap.map(({ title, onClick, id }) => (
+      {buttonsMap.map(({ title, onClick }, index) => (
         <button
           key={title}
           type="button"
-          onClick={setActiveButton(id, onClick)}
-          className={clsx(classes.sort__button, active === id && classes["sort__button--active"])}
+          onClick={setActiveButton(index, onClick)}
+          className={clsx(classes.sort__button, active === index && classes.sort__button_active)}
         >
           {title}
         </button>
@@ -56,5 +48,3 @@ const Sort = () => {
     </div>
   );
 };
-
-export default Sort;
