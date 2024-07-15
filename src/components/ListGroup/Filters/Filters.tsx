@@ -39,7 +39,7 @@ export const Filters = () => {
   };
 
   const toggleAllFilters = (e: ChangeEvent) => {
-    const changedFilters = e.target.checked ? Object.values(FlightType) : [];
+    const changedFilters = e.target.checked ? (Object.values(FlightType) as FlightType[]) : [];
     setFilters(changedFilters);
     setAll((prev) => !prev);
   };
