@@ -21,25 +21,25 @@
   &__filters {
     display: flex;
     flex-direction: column;
+  }
+}
 
-    &__filter {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      padding: 10px 20px;
-      color: $grey-color;
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  padding: 10px 20px;
+  color: $grey-color;
 
-      &:hover {
-        background: rgb(241 252 255 / 100%);
-        cursor: pointer;
-      }
+  &:hover {
+    background: rgb(241 252 255 / 100%);
+    cursor: pointer;
+  }
 
-      &__input {
-         &:hover {
-           cursor: pointer;
-         }
-      }
+  &__input {
+    &:hover {
+      cursor: pointer;
     }
   }
 }

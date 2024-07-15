@@ -3,26 +3,46 @@ import { useDispatch } from "react-redux";
 import { ticketsActions } from "@redux/ticket/reducer";
 import classes from "./Filters.module.scss";
 
-const flights = [
-  { label: "Без пересадок", value: 0 },
-  { label: "1 Пересадка", value: 1 },
-  { label: "2 Пересадки", value: 2 },
-  { label: "3 Пересадки", value: 3 },
+enum FlightType {
+  NoTransfers,
+  OneTransfer,
+  TwoTransfers,
+  ThreeTransfers,
+}
+
+const flightsTransfers = [
+  { label: "Без пересадок", value: FlightType.NoTransfers },
+  { label: "1 Пересадка", value: FlightType.OneTransfer },
+  { label: "2 Пересадки", value: FlightType.TwoTransfers },
+  { label: "3 Пересадки", value: FlightType.ThreeTransfers },
 ];
 
+type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
+type CheckboxProps = { label: string; value?: number; checked: boolean; onChange: (e: ChangeEvent) => void };
+const Checkbox = ({ label, value, checked, onChange }: CheckboxProps) => (
+  <label className={classes.filter}>
+    <input name={label} checked={checked} className={classes.filter__input} type="checkbox" value={value} onChange={onChange} />
+    {label}
+  </label>
+);
+
 export const Filters = () => {
-  const [filters, setFilters] = React.useState<number[]>([]);
+  const [filters, setFilters] = React.useState<FlightType[]>([]);
+  const [all, setAll] = React.useState<boolean>(false);
   const dispatch = useDispatch();
 
-  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(e.target.value);
-    const allFilter = document.getElementById("allFilter") as HTMLInputElement;
-    allFilter.checked = false;
-    setFilters(e.target.checked ? [...filters, value] : filters.filter((filter) => filter !== value));
+  const handleFilterChange = (e: ChangeEvent) => {
+    const value = parseInt(e.target.value, 10);
+    const changedFilters = e.target.checked ? [...filters, value] : filters.filter((filter) => filter !== value);
+    setFilters(changedFilters);
+    setAll(changedFilters.length === flightsTransfers.length);
   };
 
-  const handleAllFilters = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setFilters(e.target.checked ? flights.map(({ value }) => value) : []);
+  const toggleAllFilters = (e: ChangeEvent) => {
+    const changedFilters = e.target.checked ? Object.values(FlightType) : [];
+    setFilters(changedFilters);
+    setAll((prev) => !prev);
+  };
 
   useEffect(() => {
     dispatch(ticketsActions.filterByTransfers(filters));
@@ -32,28 +52,9 @@ export const Filters = () => {
     <aside className={classes.aside}>
       <h3 className={classes.aside__header}>Кількість пересадок</h3>
       <div className={classes.aside__filters}>
-        <label className={classes.aside__filters__filter}>
-          <input
-            id="allFilter"
-            name="all"
-            className={classes.aside__filters__filter__input}
-            type="checkbox"
-            onChange={handleAllFilters}
-          />
-          Всі
-        </label>
-        {flights.map(({ value, label }) => (
-          <label className={classes.aside__filters__filter} key={label}>
-            <input
-              name={label}
-              checked={filters.includes(value)}
-              className={classes.aside__filters__filter__input}
-              type="checkbox"
-              value={value}
-              onChange={handleFilterChange}
-            />
-            {label}
-          </label>
+        <Checkbox checked={all} label="Всі" onChange={toggleAllFilters} />
+        {flightsTransfers.map(({ value, label }) => (
+          <Checkbox key={label} checked={filters.includes(value)} value={value} label={label} onChange={handleFilterChange} />
         ))}
       </div>
     </aside>
